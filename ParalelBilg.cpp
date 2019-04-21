@@ -21,7 +21,7 @@ int main()
     }
 	*/
 	
-	string temp[5000];
+	string sekans_array[5000];
 	string templine;
 	//	ilk 3 satiri okumuyoruz...
 	getline(dosya1,templine);
@@ -30,7 +30,7 @@ int main()
 	
 	// 4. satirdan itibaren 2 satir bos gecip okuma yapiyoruz boylece bellekte kapladigimiz alani kucuk tutmaya calistik...
 	while(!dosya1.eof()){
-		getline(dosya1,temp[count]);
+		getline(dosya1,sekans_array[count]);
 		getline(dosya1,templine);
 		getline(dosya1,templine);
 		count++;
@@ -110,10 +110,10 @@ int main()
 	    }
 	*/
     
-    for(int i = 0; i < 4999; i++){
-        sekansx = temp[i];
+    for(int i = 0; i < 5000; i++){
+        sekansx = sekans_array[i];
         for(int j = i + 1; j < 5000; j++){
-            sekansy = temp[j];
+            sekansy = sekans_array[j];
             float matrix[202][202];
             matrix[0][0] = 0;
             gap= -1.832482334;
@@ -159,7 +159,7 @@ int main()
 					minvalue_of_scores = scores[2];
 					minvalueindex_of_scores = 0;
 					for(int k = 1; k < 20; k++){
-						if(scores[lk * 3 + 2] > maxvalue_of_scores){
+						if(scores[k * 3 + 2] < minvalue_of_scores){
 							minvalue_of_scores = scores[k * 3 + 2];
 							minvalueindex_of_scores = k; 
 						}
@@ -176,7 +176,7 @@ int main()
 					scores[minvalueindex_of_scores * 3 + 2] = matrix[201][201];
 				
 					minvalue_of_scores = scores[2];
-					int minvalueindex_of_scores = 0;
+					minvalueindex_of_scores = 0;
 					
 					for(int k = 1; k < 20; k++){
 						if(scores[k * 3 + 2] < minvalue_of_scores){
@@ -190,15 +190,34 @@ int main()
         }
     }
     
+    // Elde ettigimiz sonuclari buyukten kucuge dogru siraliyoruz...
+    for(int i = 0; i < 19; i++){
+    	for(int j = i + 1; j < 20; j++){
+    		if(scores[j * 3 + 2] > scores[i * 3 + 2]){
+    			int tempsekansno1 = scores[i * 3];
+    			int tempsekansno2 = scores[i * 3 + 1];
+    			double tempscore = scores[i * 3 + 2];
+				scores[i * 3] = scores[j * 3];
+    			scores[i * 3 + 1] = scores[j * 3 + 1];
+    			scores[i * 3 + 2] = scores[j * 3 + 2];
+    			scores[j * 3]     = tempsekansno1;
+    			scores[j * 3 + 1] = tempsekansno2;
+    			scores[j * 3 + 2] = tempscore;
+    			
+			}
+		}
+	}
+    
     ofstream dosya2("sonuclar.txt");
     dosya2<<endl<<setw(70)<<"SKOR TABLOSU"<<endl<<endl<<endl;
-    dosya2<<setw(10)<<"No"<<setw(10)<<"S1"<<setw(10)<<"S2"<<setw(20)<<"Skor"<<endl<<endl;
+    dosya2<<setw(47)<<"No"<<setw(10)<<"S1"<<setw(10)<<"S2"<<setw(15)<<"Skor"<<endl;
+    dosya2<<setw(86)<<"--------------------------------------------"<<endl;
 	for(int i=0;i<20;i++){
 		if(i==19){
-			dosya2<<setw(10)<<i<<setw(10)<<scores[i * 3]<<setw(10)<<scores[i * 3 ]<<setw(10)<<scores[i];
+			dosya2<<setw(47)<<i<<setw(10)<<scores[i * 3]<<setw(10)<<scores[i * 3 + 1]<<setw(17)<<scores[i * 3 + 2];
 		}
 		else{
-			dosya2<<setw(10)<<i<<setw(10)<<scores[i * 3]<<setw(10)<<scores[i * 3 ]<<setw(10)<<scores[i]<<endl;
+			dosya2<<setw(47)<<i<<setw(10)<<scores[i * 3]<<setw(10)<<scores[i * 3 + 1]<<setw(17)<<scores[i * 3 + 2]<<endl;
 		}
 		
     }
