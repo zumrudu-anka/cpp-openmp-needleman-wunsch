@@ -6,11 +6,10 @@ using namespace std;
 int main()
 {
     float gap= -1.832482334;
-    cout<<gap;
     float match= 3.621354295;
     float missmatch = -2.451795405;
     ifstream dosya1;
-    dosya1.open("5K_Sequence.fasta");
+    dosya1.open("Sequences//5K_Sequence.fasta");
     int count=0;
     string temp[15002];
 
@@ -26,10 +25,10 @@ int main()
 	double scores[20];
 	int index_of_scores=0;
     for(int i=3; i<15001; i+=3){
-        sekansx =temp[i];
+        sekansx = temp[i];
 
         for(int j=i+3; j<14998; j+=3){
-            sekansy =temp[j];
+            sekansy = temp[j];
             float matris [202][202];
             matris[0][0]=0;
             gap= -1.832482334;
@@ -68,7 +67,6 @@ int main()
             	index_of_scores++;
 			}
             else{
-        		double temp = matris[201][201];
         		double max = scores[0];
         		int tempindex = 0;
         		for(int k = 1; k < 20; k++){
@@ -78,7 +76,7 @@ int main()
 					}
 				}
 				if(max > matris[201][201]){
-					scores[tempindex] = matrix[201][201];
+					scores[tempindex] = matris[201][201];
 				}
 				
 			}
@@ -90,6 +88,6 @@ int main()
     for(int i=0;i<20;i++){
     	dosya2<<scores[i]<<endl;
 	}
-    
+    dosya2.close();
     return 0;
 }
