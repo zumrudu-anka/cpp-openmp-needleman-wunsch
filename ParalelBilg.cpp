@@ -1,10 +1,60 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <time.h>
+#include <sstream>
+
 using namespace std;
 
+string EditTime(tm* coming_time){
+	stringstream ss;
+	ss<<"Tarih: ";
+	if(coming_time->tm_mday < 10){
+		ss<<"0"<<coming_time->tm_mday<<".";
+	}
+	else{
+		ss<<coming_time->tm_mday<<".";
+	}
+	if(coming_time->tm_mon + 1 < 10){
+		ss<<"0"<<coming_time->tm_mon + 1<<".";
+	}
+	else{
+		ss<<coming_time->tm_mon + 1<<".";
+	}
+	ss<<coming_time->tm_year + 1900<<"\t"<<"Saat: ";
+	if(coming_time->tm_hour < 10){
+		ss<<"0"<<coming_time->tm_hour<<":";
+	}
+	else{
+		ss<<coming_time->tm_hour<<":";
+	}
+	if(coming_time->tm_min < 10){
+		ss<<"0"<<coming_time->tm_min<<":";
+	}
+	else{
+		ss<<coming_time->tm_min<<":";
+	}
+	if(coming_time->tm_sec < 10){
+		ss<<"0"<<coming_time->tm_sec;
+	}
+	else{
+		ss<<coming_time->tm_sec;
+	}
+	return ss.str();
+}
+
+string GetTime(){
+	time_t zaman=time(0);
+	tm* simdiki_zaman = localtime(&zaman);
+	return EditTime(simdiki_zaman);
+}
+
 int main()
-{
+{	
+	cout<<endl<<setw(35)<<"Process Started"<<endl;
+	cout<<endl<<setw(39)<<GetTime()<<endl<<endl<<endl;
+	cout<<setw(46)<<"Process in Progress, please wait..."<<endl;
+	
     float gap= -1.832482334;
     float match= 3.621354295;
     float missmatch = -2.451795405;
@@ -186,7 +236,6 @@ int main()
 					}
 				}				
 			}
-            cout<<matrix[201][201]<<endl;
         }
     }
     
@@ -222,6 +271,9 @@ int main()
 		
     }
     dosya2.close();
+    
+    cout<<endl<<endl<<endl<<setw(34)<<"Process Done"<<endl;
+	cout<<endl<<setw(39)<<GetTime()<<endl;
     
     return 0;
 }
