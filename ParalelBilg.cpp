@@ -51,14 +51,16 @@ string GetTime(){
 
 int main()
 {	
+
 	cout<<endl<<setw(35)<<"Process Started"<<endl;
 	cout<<endl<<setw(39)<<GetTime()<<endl<<endl<<endl;
 	cout<<setw(46)<<"Process in Progress, please wait..."<<endl;
 	
-    float gap= -1.832482334;
-    float match= 3.621354295;
-    float missmatch = -2.451795405;
-    ifstream dosya1;
+    float const gap= -1.832482334;
+    float const match= 3.621354295;
+    float const missmatch = -2.451795405;
+    
+	ifstream dosya1;
     dosya1.open("Sequences//5K_Sequence.fasta");
     int count=0;
     
@@ -159,25 +161,26 @@ int main()
 	        }
 	    }
 	*/
-    
-    for(int i = 0; i < 5000; i++){
+    float gap2;
+    #pragma omp parallel for default(none) firstprivate(gap2, sekansx, sekansy, sekans_array, minvalueindex_of_scores, minvalue_of_scores, index_of_scores) shared(scores) num_threads(32)
+    for(int i = 0; i < 200; i++){
         sekansx = sekans_array[i];
-        for(int j = i + 1; j < 5000; j++){
+        for(int j = i + 1; j < 200; j++){
             sekansy = sekans_array[j];
             float matrix[202][202];
             matrix[0][0] = 0;
-            gap= -1.832482334;
+            gap2= -1.832482334;
             for(int k = 1; k < 202; k++){
                 matrix[0][k] = gap;
-                gap += gap;
+                gap2 += gap;
 
             }
-            gap = -1.832482334;
+            gap2 = -1.832482334;
             for(int k = 1; k < 202; k++){
                 matrix[k][0] = gap;
-                gap += gap;
+                gap2 += gap;
             }
-            gap = -1.832482334;
+            gap2 = -1.832482334;
 
             float x, y, z;
             for(int k = 1; k < 202; k++){
