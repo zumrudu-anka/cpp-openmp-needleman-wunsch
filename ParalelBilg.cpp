@@ -162,10 +162,10 @@ int main()
 	    }
 	*/
     float gap2;
-    #pragma omp parallel for default(none) firstprivate(gap2, sekansx, sekansy, sekans_array, minvalueindex_of_scores, minvalue_of_scores, index_of_scores) shared(scores) num_threads(32)
-    for(int i = 0; i < 200; i++){
+    #pragma omp parallel for default(none) firstprivate(gap2, sekansx, sekansy, sekans_array, minvalueindex_of_scores, minvalue_of_scores, index_of_scores) shared(scores)
+    for(int i = 0; i < 5000; i++){
         sekansx = sekans_array[i];
-        for(int j = i + 1; j < 200; j++){
+        for(int j = i + 1; j < 5000; j++){
             sekansy = sekans_array[j];
             float matrix[202][202];
             matrix[0][0] = 0;
