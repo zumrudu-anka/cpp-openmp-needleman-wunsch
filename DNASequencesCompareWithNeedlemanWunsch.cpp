@@ -11,8 +11,6 @@ float const match=3.621354295;
 float const missmatch=-2.451795405;
 float const gap=-1.832482334;
 
-
-
 string EditTime(tm* coming_time){
 	stringstream ss;
 	ss<<"Tarih: ";
@@ -98,10 +96,7 @@ void quickSort(float arr[], int low, int high)
     } 
 } 
 
-
 int main(){
-	
-	
 	
 	cout<<endl<<setw(35)<<"Process Started"<<endl;
 	cout<<endl<<setw(39)<<GetTime()<<endl<<endl<<endl;
@@ -111,8 +106,9 @@ int main(){
 	ifstream sequencefile("Sequences//5K_Sequence.fasta");
 	
 	string temp;
-	getline(sequencefile,temp);
 	int count=0;
+	
+	getline(sequencefile,temp);	
 	while(!sequencefile.eof()){
 		getline(sequencefile,temp);
 		getline(sequencefile,temp);	
@@ -132,6 +128,7 @@ int main(){
 	
 	int max_scores_length=5000/1000*60;
 	float *max_scores=new float[max_scores_length];
+	
 	int max_scores_count=0;
 	int scores_count;
 	
@@ -186,7 +183,7 @@ int main(){
 	
 	quickSort(max_scores,0,max_scores_count*3-3);
 
-	ofstream result_file("Results.txt");
+	ofstream result_file("ParalelResults.txt");
 	
 	result_file<<endl<<setw(70)<<"SKOR TABLOSU"<<endl<<endl<<endl;
     result_file<<setw(47)<<"No"<<setw(10)<<"S1"<<setw(10)<<"S2"<<setw(15)<<"Skor"<<endl;
