@@ -9,4 +9,4 @@
   
   Bu algoritmayı C++ dilini kullanarak gerçeklediğim için C++ tabanlı çalışan OpenMP kütüphanesini kullandım. IDE olarak Dev-C++ tercih ettim. Bu IDE aracılığıyla OpenMP yapısını kullanabilmek için:
   
-  
+  ![Settings For Dev-C++](https://github.com/zumrudu-anka/NeedlemanWunschAlgorithmWithOpenMP/blob/master/Images/ForSettings.png)
