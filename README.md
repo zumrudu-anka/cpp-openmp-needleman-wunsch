@@ -8,6 +8,7 @@
   parallelleştirme işlemlerini yaparak, yani iş yükünü birden çok threadlere dağıtarak işlemimizi hızlandırabiliriz.
   
   Bu algoritmayı C++ dilini kullanarak gerçeklediğim için C++ tabanlı çalışan OpenMP kütüphanesini kullandım. IDE olarak Dev-C++ tercih ettim. Bu IDE aracılığıyla OpenMP yapısını kullanabilmek için Dev-C++ açıldıktan sonra menüden
+  
   **"Tools->Compiler Options"** seçeneği seçilerek compiler ayarlarında **"Add the following commands when calling the compiler"** seçeneği aktifleştirilir ve hemen altındaki metin kutusuna **"-fopenmp"** ifadesi eklenir:
   
   ![Settings For Dev-C++](https://github.com/zumrudu-anka/NeedlemanWunschAlgorithmWithOpenMP/blob/master/Images/ForSettings.png)
