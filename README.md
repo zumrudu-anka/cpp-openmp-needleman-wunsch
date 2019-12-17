@@ -11,5 +11,4 @@
   
   ![Settings For DEV-C++](https://github.com/zumrudu-anka/NeedlemanWunschAlgorithmWithOpenMP/blob/master/Images/ForSettings.png)
   
-  ![Needleman Wunsch Algoritması](Needleman Wunsch Algoritması için:
-http://bilgisayarkavramlari.sadievrenseker.com/2012/06/05/needleman-wunsch-algoritmasi/)
+  ![Needleman Wunsch Algoritması](http://bilgisayarkavramlari.sadievrenseker.com/2012/06/05/needleman-wunsch-algoritmasi/)
